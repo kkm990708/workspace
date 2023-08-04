@@ -258,7 +258,29 @@ public class ArrayPractice {
 		}
 		System.out.println("\ni의 개수 : " + count);
 	}
+	
+	
 	public void practice14() {
+		System.out.print("배열의 크기를 입력하세요 : ");
+		String[] arr = new String[sc.nextInt()];
+		for (int i = 0; i < arr.length; i++) {
+			System.out.printf("%d번째 배열의 값을 입력하세요 : ", i);
+			arr[i] = sc.next();
+		}
+		while (true) {
+			System.out.println("배열의 값을 추가로 입력하겠습니까?(1.예/0.아니오)");
+			int select = sc.nextInt();
+			if (select == 1) {
+				System.out.println("추가로 입력할 배열의 길이를 입력하세요 : ");
+				int lengthPlus = sc.nextInt();
+				arr = new String
+				continue;
+			}
+			if (select == 0) {
+				break;
+			}
+			System.out.println("1 또는 0 을 입력해 주세요");
+		}
 		
 	}
 	public void practice15() {

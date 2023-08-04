@@ -62,6 +62,8 @@ public class CarRun {
 		System.out.println("다운 캐스팅 확인");// 다운캐스팅
 		System.out.println( ( (Porsche)carArr[1]).isOpenTheDoor());
 		System.out.println( ( (Spark)carArr[2]).getDiscountRate());
+		
+		// git 연습중 연습중
 	}
 }
 
