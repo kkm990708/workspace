@@ -573,4 +573,56 @@ public class ArrayPractice {
             System.out.println();
         }
     }
+    			
+    public void BingoGame(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("빙고판 크기 지정 : ");
+        int size = scanner.nextInt();
+        int count = 0;
+        
+        int[] check = new int[size*size];
+        int[][] bingArr = new int[size][size];
+        for (int i = 0; i < bingArr.length; i++) {
+            for (int j = 0; j < bingArr[i].length; j++) {
+            	
+                bingArr[i][j] = (int)(Math.random() * size * size + 1);
+                check[count++] = bingArr[i][j];
+                
+                for (int j2 = 0; j2 < check.length; j2++) {
+					if (bingArr[i][j] == check[j2]) {
+						j--;
+						count--;
+						break;
+					}
+				}
+            }
+        }
+        for (int i = 0; i < bingArr.length; i++) {
+			for (int j = 0; j < bingArr.length; j++) {
+				System.out.printf("%3d", bingArr[i][j]);
+			}
+		}
+        System.out.println("======== 빙고 게임 시작 ========");
+        while (true) {
+        	System.out.print("정수를 입력하시오 : ");
+        	int input = scanner.nextInt();
+            for (int i = 0; i < bingArr.length; i++) {
+    			for (int j = 0; j < bingArr.length; j++) {
+    				if (bingArr[i][j] == input) {
+						bingArr[i][j] = 0;
+					}
+    			}
+    		}
+            
+            for (int i = 0; i < bingArr.length; i++) {
+    			for (int j = 0; j < bingArr.length; j++) {
+    				if (bingArr[i][j] == 0) {
+						System.out.print("  ★");
+					}
+    				System.out.printf("%3d", bingArr[i][j]);
+    			}
+    		}
+            
+		}
+    }
 }
