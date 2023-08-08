@@ -5,9 +5,12 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.channels.AsynchronousServerSocketChannel;
+import java.security.PublicKey;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.zip.DataFormatException;
+
+import edu.kh.exception.model.dto.UserException;
 
 public class ExceptionService {
 	public void ex1() {
@@ -178,6 +181,30 @@ public void ex4() {
 		throw new DataFormatException();
 		//IOException 와 관련 없는 예외 -> 별도 처리 필요 -> throws가 여러 예외를 던지게 함
 		
+	}
+	
+	public void ex8() {
+		try {
+			ex9();
+		} catch (UserException e) {
+			e.printStackTrace();
+		}
+	}
+	// 숫자를 입력받아 출력하는 메서드 단, 100초과시 예외발생
+	public void ex9() throws UserException {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("숫자 입력 : ");
+		
+		int input = sc.nextInt();
+		
+		if (input > 100) {	// 입력한 숫자가 100 초과일 때 예외 발생
+//			throw new UserException();
+			throw new UserException("100을 초과하는 " + input + "이 입력됨");
+			
+		}
+		System.out.println("입력한 숫자 : " + input);
 	}
 }
 
