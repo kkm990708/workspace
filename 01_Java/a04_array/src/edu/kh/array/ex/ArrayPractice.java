@@ -640,7 +640,7 @@ public class ArrayPractice {
     			System.out.println();
     		}
             
-            for (int i = 0; i < bingArr.length; i++) {
+            for (int i = 0; i < bingArr.length; i++) {	// 가로 빙고 체크
             	binggoCheck = true;
 				for (int j = 0; j < bingArr.length; j++) {
 					if(bingArr[i][j] != 0) {
@@ -652,7 +652,7 @@ public class ArrayPractice {
 					binggoCount++;
 				}
 			}
-            for (int i = 0; i < bingArr.length; i++) {
+            for (int i = 0; i < bingArr.length; i++) { // 세로 빙고 체크
             	binggoCheck = true;
 				for (int j = 0; j < bingArr.length; j++) {
 					if(bingArr[j][i] != 0) {
@@ -665,7 +665,7 @@ public class ArrayPractice {
 				}
 			}
             
-            for (int i = 0; i < bingArr.length; i++) {
+            for (int i = 0; i < bingArr.length; i++) {	// 대각 빙고 체크
             	binggoCheck = true;
 				if(bingArr[i][i] != 0) {
 					binggoCheck = false;
@@ -676,7 +676,7 @@ public class ArrayPractice {
             	binggoCount++;
             }
             
-            for (int i = 0; i < bingArr.length; i++) {
+            for (int i = 0; i < bingArr.length; i++) {	// 대각 반대방향 체크
             	binggoCheck = true;
 				if(bingArr[i][bingArr.length - 1 - i] != 0) {
 					binggoCheck = false;
