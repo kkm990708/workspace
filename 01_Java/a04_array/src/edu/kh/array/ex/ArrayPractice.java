@@ -600,7 +600,7 @@ public class ArrayPractice {
 						if (i == k && j2 == j || duple) {
 							break;
 						}
-						if (bingArr[i][j] == bingArr[k][j2]) {
+						if (bingArr[i][j] == bingArr[k][j2]) {	// 중복 체크
 							j--;
 							count--;
 							duple = true;
@@ -621,18 +621,18 @@ public class ArrayPractice {
         	System.out.print("정수를 입력하시오 : ");
         	int input = scanner.nextInt();
         	binggoCount = 0;
-            for (int i = 0; i < bingArr.length; i++) {
+            for (int i = 0; i < bingArr.length; i++) {		
     			for (int j = 0; j < bingArr.length; j++) {
     				if (bingArr[i][j] == input) {
-						bingArr[i][j] = 0;
+						bingArr[i][j] = 0;	// 정수 입력시 해당 위치 0대입
 					}
     			}
     		}
             
-            for (int i = 0; i < bingArr.length; i++) {
+            for (int i = 0; i < bingArr.length; i++) {		
     			for (int j = 0; j < bingArr.length; j++) {
     				if (bingArr[i][j] == 0) {
-						System.out.print("  ★");
+						System.out.print("  ★");	// 배열 0이면 별표
 						continue;
 					}
     				System.out.printf("%3d", bingArr[i][j]);
