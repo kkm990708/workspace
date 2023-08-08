@@ -1,5 +1,6 @@
 package edu.kh.array.ex;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 import javax.management.MXBean;
@@ -579,21 +580,33 @@ public class ArrayPractice {
         System.out.print("빙고판 크기 지정 : ");
         int size = scanner.nextInt();
         int count = 0;
+        Boolean duple = false;
+        Boolean binggoCheck = false;
+        int binggoCount = 0;
         
-        int[] check = new int[size*size];
+        
+        int[] check = new int[size * size];
         int[][] bingArr = new int[size][size];
         for (int i = 0; i < bingArr.length; i++) {
+        	
             for (int j = 0; j < bingArr[i].length; j++) {
             	
+            	duple = false;
                 bingArr[i][j] = (int)(Math.random() * size * size + 1);
                 check[count++] = bingArr[i][j];
                 
-                for (int j2 = 0; j2 < check.length; j2++) {
-					if (bingArr[i][j] == check[j2]) {
-						j--;
-						count--;
-						break;
-					}
+                for (int k = 0; k < bingArr.length ; k++) {
+					for (int j2 = 0; j2 < bingArr.length; j2++) {
+						if (i == k && j2 == j || duple) {
+							break;
+						}
+						if (bingArr[i][j] == bingArr[k][j2]) {
+							j--;
+							count--;
+							duple = true;
+							break;
+						}
+					}	
 				}
             }
         }
@@ -601,11 +614,13 @@ public class ArrayPractice {
 			for (int j = 0; j < bingArr.length; j++) {
 				System.out.printf("%3d", bingArr[i][j]);
 			}
+			System.out.println();
 		}
         System.out.println("======== 빙고 게임 시작 ========");
         while (true) {
         	System.out.print("정수를 입력하시오 : ");
         	int input = scanner.nextInt();
+        	binggoCount = 0;
             for (int i = 0; i < bingArr.length; i++) {
     			for (int j = 0; j < bingArr.length; j++) {
     				if (bingArr[i][j] == input) {
@@ -618,11 +633,65 @@ public class ArrayPractice {
     			for (int j = 0; j < bingArr.length; j++) {
     				if (bingArr[i][j] == 0) {
 						System.out.print("  ★");
+						continue;
 					}
     				System.out.printf("%3d", bingArr[i][j]);
     			}
+    			System.out.println();
     		}
             
+            for (int i = 0; i < bingArr.length; i++) {
+            	binggoCheck = true;
+				for (int j = 0; j < bingArr.length; j++) {
+					if(bingArr[i][j] != 0) {
+						binggoCheck = false;
+						break;
+					}
+				}
+				if (binggoCheck) {
+					binggoCount++;
+				}
+			}
+            for (int i = 0; i < bingArr.length; i++) {
+            	binggoCheck = true;
+				for (int j = 0; j < bingArr.length; j++) {
+					if(bingArr[j][i] != 0) {
+						binggoCheck = false;
+						break;
+					}
+				}
+				if (binggoCheck) {
+					binggoCount++;
+				}
+			}
+            
+            for (int i = 0; i < bingArr.length; i++) {
+            	binggoCheck = true;
+				if(bingArr[i][i] != 0) {
+					binggoCheck = false;
+					break;
+				}
+			}
+            if (binggoCheck) {
+            	binggoCount++;
+            }
+            
+            for (int i = 0; i < bingArr.length; i++) {
+            	binggoCheck = true;
+				if(bingArr[i][bingArr.length - 1 - i] != 0) {
+					binggoCheck = false;
+					break;
+				}
+			}
+            if (binggoCheck) {
+            	binggoCount++;
+            }
+            
+            System.out.printf("\n현재 %d 빙고\n\n", binggoCount);
+            if (binggoCount >=3) {
+				System.out.println("****** BINGO!!! ******");
+				break;
+			}
 		}
     }
 }
