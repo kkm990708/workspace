@@ -612,7 +612,7 @@ public class ArrayPractice {
         }
         for (int i = 0; i < bingArr.length; i++) {
 			for (int j = 0; j < bingArr.length; j++) {
-				System.out.printf("%3d", bingArr[i][j]);
+				System.out.printf("%4d", bingArr[i][j]);
 			}
 			System.out.println();
 		}
@@ -632,10 +632,10 @@ public class ArrayPractice {
             for (int i = 0; i < bingArr.length; i++) {		
     			for (int j = 0; j < bingArr.length; j++) {
     				if (bingArr[i][j] == 0) {
-						System.out.print("  ★");	// 배열 0이면 별표
+						System.out.print("  ★ ");	// 배열 0이면 별표
 						continue;
 					}
-    				System.out.printf("%3d", bingArr[i][j]);
+    				System.out.printf("%4d", bingArr[i][j]);
     			}
     			System.out.println();
     		}
