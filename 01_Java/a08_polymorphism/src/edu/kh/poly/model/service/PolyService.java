@@ -34,7 +34,6 @@ public class PolyService {
 				System.out.print("자동차 : ");
 			}
 			//-----------------------------------------------
-			// 배열 요소 toString()을 호출해서 출력
 			// 배열 요소 toString()을 이용해서 출력
 			System.out.println(arr[i].toString());
 			// -> Car 자료형(클래스)의 toString()으로만 연결

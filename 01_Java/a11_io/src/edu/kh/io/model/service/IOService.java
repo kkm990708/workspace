@@ -1,5 +1,7 @@
 package edu.kh.io.model.service;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,6 +9,12 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.Buffer;
+import java.util.Scanner;
+
+import edu.kh.io.model.dto.Member;
 
 public class IOService {
 	// Stream(스트림) : 데이터가 이동하는 통로 (기본적으로 단방향)
@@ -159,4 +167,114 @@ public class IOService {
 			}
 		}
 	}
+	
+	// file 복사하기
+	public void fileCopy() {
+		Scanner sc = new Scanner(System.in);
+		// byte 기반 스트림 이용 + 성능 향상을 위한 보조 스트림
+		// BufferedInputStream / BufferedOutputStream
+		// -> 모아서 한번에 입출력
+		BufferedInputStream bis = null;
+		BufferedOutputStream bos = null;
+		
+		try {
+			System.out.print("복사할 파일 경로 : ");
+			String target = sc.nextLine();	// 한줄 입력
+			System.out.print("복사본이 저장될 경로 + 파일명 : ");
+			String copy = sc.nextLine();
+			
+			//복사 대상을 읽어올 IputStream 생성 + 보조 스트림으로 성능 향상
+			bis = new BufferedInputStream(new FileInputStream(target));
+			// 보조스트림( 기반 스트림 )
+			// 복사한 파일을 출력할 OutputStream 생성 + 보조 스트림으로 성능향상
+			bos = new BufferedOutputStream(new FileOutputStream(copy));
+			int value = 0; // 1byte씩 읽어서 저장할 임시변수
+			while (true) {
+				value =bis.read();	// 1byte 읽어오기, 없으면 -1
+				if (value == -1) break;
+				// if,for,while {}안에 코드가 1줄이면 생략 가능
+				bos.write(value); // 1byte씩 출력
+				
+			}
+			System.out.println("복사완료");
+			
+			
+		}catch (FileNotFoundException e) {
+			System.out.println("해당 파일이 존재하지 않습니다");
+		}catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			// 다쓴 스트림 없애기
+			try {
+				if(bis != null) bis.close();
+				if(bos != null) bos.close();
+				// 보조스트림 close 하면 연결된 기반 스트림도 같이 close() 된다
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/**
+	 * 객체 출력 보조스트림 이용
+	 */
+	public void objectOutput() {
+		// ObjectOutputStream
+		// -> 객체를 바이트 기반으로 출력하는 보조 스트림
+		// 사용 조건 : 출력하는 객체에 직렬화 가능 여부를 나타내는 Serializable
+		ObjectOutputStream oos = null;
+		ObjectInputStream ois = null;
+		try {
+			// java.io.File : 파일/폴더를 참조하는 객체
+			File folder = new File("Object");	//object라는 이름의 파일/폴더 참조
+			if (!folder.exists()) {	// object폴더가 존재하지 않는다면
+				folder.mkdir();	//make directory(folder) : 폴더만들기
+			}
+			oos = new ObjectOutputStream(new FileOutputStream("object/Member.txt"));
+			// 내보낼 회원 객체 생성
+			Member member = new Member("id01", "pw01", "name01", 1000);
+			// 회원 객체를 파일로 출력
+			oos.writeObject(member);
+			System.out.println("회원 출력 완료");
+			// NotSerializableException : 직렬화 안되있음
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (oos != null) oos.close(); //스트림닫기 (메모리반환)
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/**
+	 * 객체 입력 보조스트림 활용
+	 */
+	public void objectInput() {
+		ObjectInputStream ois = null;
+		try {
+			// 파일내 객체를 읽어오는 스트림 생성
+			ois = new ObjectInputStream(new FileInputStream("object/Member.txt"));
+			Member member = (Member)ois.readObject(); // ois.readObject() : 직렬화된 객체를 읽어와 역직렬화
+			System.out.println(member);
+		} catch (Exception e) {
+			// FileNotFoundException
+			// IOException
+			// 둘다 한번에 잡아서 처리
+			// Exception : 모든 예외의 최상위 부모
+			e.printStackTrace();
+		}finally {
+			try {
+				if(ois != null) ois.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+	}
+	
+	
 }

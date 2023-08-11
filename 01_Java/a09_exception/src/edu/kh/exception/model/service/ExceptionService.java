@@ -51,7 +51,7 @@ public class ExceptionService {
 			System.out.println("잘못 입력");
 		}
 		// Unchecked Exception
-		// -> 예외 처리가 강제되지 않는 예외(개발자, 사용자의 단순 실수
+		// -> 예외 처리가 강제되지 않는 예외(개발자, 사용자의 단순 실수)
 
 	}
 	
