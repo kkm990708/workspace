@@ -22,6 +22,8 @@ public class ArrayPractice {
 		System.out.printf("\n짝수 번째 인덱스 합 : %d",sum);
 	}
 	
+	
+	
 	public void practice2() {
 		int sum = 0;
 		int[] arr = new int[9];
@@ -38,6 +40,8 @@ public class ArrayPractice {
 		System.out.printf("\n홀수 번째 인덱스 합 : %d",sum);
 	}
 	
+	
+	
 	public void practice3() {
 		
 		System.out.print("양의 정수 : ");
@@ -50,6 +54,8 @@ public class ArrayPractice {
 			System.out.print(num[i] + " ");
 		}
 	}
+	
+	
 	
 	public void practice4() {
 		int[] arr = new int[5];
@@ -73,6 +79,8 @@ public class ArrayPractice {
 		}
 	}
 	
+	
+	
 	public void practice5() {
 		System.out.print("문자열 : ");
 		String str = sc.next();
@@ -95,6 +103,8 @@ public class ArrayPractice {
 		System.out.println("\ni의 개수 : " + count);
 	}
 	
+	
+	
 	public void practice6() {
 		
 		System.out.print("정수 : ");
@@ -113,6 +123,8 @@ public class ArrayPractice {
 		System.out.println("\n총 합 : " + sum);
 	}
 	
+	
+	
 	public void practice7() {
 		System.out.print("주민등록번호(-포함) : ");
 		String str = sc.next();
@@ -128,6 +140,8 @@ public class ArrayPractice {
 			System.out.print(arr[i]);
 		}
 	}
+	
+	
 	
 	public void practice8() {
 
@@ -149,6 +163,8 @@ public class ArrayPractice {
 		}
 	}
 	
+	
+	
 	public void practice9() {
 		int[] arr= new int[10];
 		for (int i = 0; i < arr.length; i++) {
@@ -159,6 +175,9 @@ public class ArrayPractice {
 			System.out.print(arr[i] + " ");
 		}
 	}
+	
+	
+	
 	public void practice10() {
 		int[] arr= new int[10];
 		int max = 0;
@@ -182,6 +201,8 @@ public class ArrayPractice {
 		System.out.println("최소값 : " + min);
 	}
 	
+	
+	
 	public void practice11() {
 		int[] arr= new int[10];
 		for (int i = 0; i < arr.length; i++) {
@@ -199,6 +220,7 @@ public class ArrayPractice {
 			System.out.print(arr[i] + " ");
 		}
 	}
+	
 	
 	
 	public void practice12() {
@@ -225,6 +247,8 @@ public class ArrayPractice {
 			System.out.print(i + " ");
 		}
 	}
+	
+	
 	
 	public void practice13() {
 		System.out.print("문자열 : ");
@@ -259,6 +283,7 @@ public class ArrayPractice {
 		}
 		System.out.println("\ni의 개수 : " + count);
 	}
+	
 	
 	
 	public void practice14() {
@@ -300,6 +325,9 @@ public class ArrayPractice {
 		}
 		System.out.print("]");
 	}
+	
+	
+	
     public void practice15(){
         String[][] arr = new String[3][3];
 
@@ -319,6 +347,7 @@ public class ArrayPractice {
     }
 
 
+    
     public void practice16(){
         int[][] arr = new int[4][4];
         for (int i = 0; i < arr.length; i++) {
@@ -335,6 +364,8 @@ public class ArrayPractice {
         }
     }
 
+    
+    
     public void practice17(){
         int count = 16;
         int[][] arr = new int[4][4];
@@ -352,6 +383,8 @@ public class ArrayPractice {
         }
     }
 
+    
+    
     public void practice18(){
         int[][] arr = new int[4][4];
         for (int i = 0; i < arr.length-1; i++) {
@@ -370,6 +403,9 @@ public class ArrayPractice {
             System.out.println();
         }
     }
+    
+    
+    
     public void practice19(){
         Scanner scanner = new Scanner(System.in);
         System.out.print("행 크기 : ");
@@ -391,6 +427,8 @@ public class ArrayPractice {
         }
     }
 
+    
+    
     public void practice20(){
         Scanner scanner = new Scanner(System.in);
         char ch = 'a';
@@ -415,6 +453,8 @@ public class ArrayPractice {
         }
     }
 
+    
+    
     public void practice21(){
         String[] students = {"강건강", "남나나", "도대담", "류라라", "문미미", "박보배",
                 "송성실", "윤예의", "진재주", "차천축", "피풍표", "홍하하"};
@@ -450,6 +490,8 @@ public class ArrayPractice {
         }
     }
 
+    
+    
     public void practice22(){
         Scanner scanner =new Scanner(System.in);
         String[] students = {"강건강", "남나나", "도대담", "류라라", "문미미", "박보배",
@@ -518,6 +560,8 @@ public class ArrayPractice {
         }
     }
 
+    
+    
     public void practice23(){
         Scanner scanner = new Scanner(System.in);
         String[][] arr = new String[6][6];
@@ -541,6 +585,8 @@ public class ArrayPractice {
             System.out.println();
         }
     }
+    
+    
 
     public void practice24(){
         Scanner scanner = new Scanner(System.in);
@@ -574,7 +620,9 @@ public class ArrayPractice {
             System.out.println();
         }
     }
-    			
+    		
+    
+    
     public void BingoGame(){
         Scanner scanner = new Scanner(System.in);
         System.out.print("빙고판 크기 지정 : ");
@@ -610,6 +658,7 @@ public class ArrayPractice {
 				}
             }
         }
+        
         for (int i = 0; i < bingArr.length; i++) {
 			for (int j = 0; j < bingArr.length; j++) {
 				System.out.printf("%4d", bingArr[i][j]);
