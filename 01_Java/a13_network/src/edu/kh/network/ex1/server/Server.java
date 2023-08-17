@@ -1,6 +1,7 @@
 package edu.kh.network.ex1.server;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -22,7 +23,7 @@ import java.util.Date;
 // 데이터 신뢰성을 보장 (데이터 오류 시 재전송)
 public class Server {
 
-	public void start() {
+	public static void start() {
 		// 1. 서버의 포트 번호 정하기
 		int port = 8500;
 		// 포트번호 0 ~ 65535 사이로 지정 가능
@@ -34,14 +35,17 @@ public class Server {
 		// 				  되는것을 기다리는 소켓 객체
 		ServerSocket serverSocket = null;
 		
+		// clientSocket : 클라이언트와 연결되는 소켓
 		Socket clientSocket = null;
 		
-		InputStream is = null;
-		OutputStream os = null;
+		InputStream is = null;	// 클라이언트 -> 서버 스트림
+		OutputStream os = null; // 클라이언트 <- 서버 스트림
 		
 		BufferedReader br = null;
 		PrintWriter pw = null;
 		
+		// 소켓, 스트림 참조 변수를 try, finally 에서 모두 사용할수 있도록
+		// try 구문 위쪽에 참조 변수를 선언
 		
 		try {
 			// 서버 컴퓨터(내 컴퓨터)의 IP 관련 정보를 얻어옴
@@ -79,18 +83,40 @@ public class Server {
 			String message = sdf.format(now) + "[서버 접속 성공]";
 			
 			pw.println(message);	// 서버 -> 클라이언트로 메시지 출력
-			pw.flush();
+			pw.flush();	// 스트림(버퍼)에 기록된 내용을 밀어내는 코드
+						// 미작성 시 클라이언트쪽으로 출력되지않음
 			
 			// 7 - 2 ) 서버 <- 클라이언트 메시지 받기(입력)
 			String ClientMessage = br.readLine(); // 한줄읽기
-			System.out.println("클라이언트로부터 받은 메시지 " + ClientMessage);
+			
+			// 클라리언트 ip 주소
+			String ClientIP = clientSocket.getInetAddress().getHostAddress();
+			
+			System.out.println(ClientIP + "로부터 받은 메시지 : " + ClientMessage);
 			
 		} catch (Exception e) {
 			
 			
 		} finally {
+			// 사용한 소켓, 스트림을 닫는 코드 작성
+			// ( 닫다 == 메모리 반환 )
+			// -> 메모리 누수 관리
 			
+			// 소켓, 스트림 생성 역순으로 close()구문을 작성
+			try {
+				// 보조 스트림 close() 시 보조스트림 생성에 사용된
+				// 기반스트림(is, os) 도 같이 close()된다
+				if(br != null) br.close();	// is.close()
+				if(pw != null) pw.close();	// os.close()
+				
+				if(serverSocket != null) serverSocket.close();
+				if(clientSocket != null) clientSocket.close();
+
+				
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
-
 }
