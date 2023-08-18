@@ -65,7 +65,7 @@ public class Server {
 			System.out.println("[클라이언트 접속 성공]");
 			
 			// 5. 연결된 클라이언트와 입출력 스트림 생성
-			is = clientSocket.getInputStream(); // 클라리언트 -> 서버 입력
+			is = clientSocket.getInputStream(); // 클라이언트 -> 서버 입력
 			os = clientSocket.getOutputStream(); // 서버 -> 클라이언트 출력
 			
 			// 6. 보조 스트림을 통해 성능개선

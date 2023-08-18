@@ -1,29 +1,17 @@
 package edu.kh.test;
 
-import java.util.Arrays;
-
-public class prograners {
-	public static void main(String[] args) {
-	}
-
-
-
-}
+import java.util.ArrayList;
 
 class Solution {
-    public int solution(int[] sides) {
-    	int max = 0;
-    	int sum = 0;
-    	for (int i : sides) {
-    		sum += i;
-			if (i > max) {
-				max = i;
+    public int solution(int n) {
+        int answer = 0;
+        
+        for (int i = 1; i <= 100; i++) {
+			if (i * 6 % n == 0) {
+				return i;
 			}
 		}
-    	sum -= max;
-    	if (max > sum) {
-			return 1;
-		}
-    	return 2;
+        
+        return answer;
     }
 }

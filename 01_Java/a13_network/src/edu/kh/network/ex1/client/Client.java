@@ -66,7 +66,7 @@ public class Client {
 			// 메모리 누수 관리
 			try {
 				if(br != null) br.close();
-				if(pw  != null) pw.hashCode();
+				if(pw  != null) pw.close();
 				if(socket != null) socket.close();
 			} catch (IOException e) {
 				e.printStackTrace();
