@@ -1,17 +1,16 @@
 package edu.kh.test;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
 class Solution {
-    public int solution(int n) {
+    public int solution(int i, int j, int k) {
         int answer = 0;
-        
-        for (int i = 1; i <= 100; i++) {
-			if (i * 6 % n == 0) {
-				return i;
-			}
-		}
-        
+        for(int a = i; a <= j ; a++){
+            String str = a+"";
+            for(int b = 0; b < str.length(); b++){
+                if((char)k+'0' == str.charAt(b)) answer++;
+            }
+        }
         return answer;
     }
 }
