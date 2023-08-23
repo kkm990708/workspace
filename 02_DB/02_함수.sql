@@ -409,3 +409,107 @@ END 구분
 FROM EMPLOYEE
 WHERE DEPT_CODE IN ('D6','D9')
 ORDER BY JOB_CODE ;
+
+
+-----------------------------------------------------------
+
+
+/*********************** 그룹 함수 *************************/
+
+-- N개의 행의 컬럼 값을 전달하여 1개의 결과가 반환
+-- (그룹의 수가 늘어나면 그룹의 수 만큼 결과가 반환)
+
+-- SUM(숫자가 기록된 컬럼명) : 그룹의 합계를 반환
+-- 모든 사원의 급여 합
+SELECT SUM(SALARY) FROM EMPLOYEE;
+
+-- 부서코드가'D6'인 사원들의 급여 합
+/*3*/SELECT SUM(SALARY)
+/*1*/FROM EMPLOYEE			
+/*2*/WHERE DEPT_CODE ='D6';
+
+-- 2000년 이후 입사자들의 급여 합
+SELECT SUM(SALARY)
+FROM EMPLOYEE
+WHERE EXTRACT(YEAR FROM HIRE_DATE) >= 2000;
+
+
+-- AVG(숫자만 기록된 컬럼) : 그룹의 평균
+SELECT AVG(SALARY)
+FROM EMPLOYEE;
+
+-- 모든 사원의 급여 평균 - 소수점 반올림 처리
+SELECT ROUND(AVG(SALARY)) 급여평균
+FROM EMPLOYEE;
+
+/********* 그룹 함수는 동시에 여러 개 작성 가능 **********/
+SELECT SUM(SALARY), AVG(SALARY) 
+FROM EMPLOYEE;
+
+-----------------------------------------
+
+-- MAX(숫자가 기록된 컬럼) : 최대값
+-- MIN(숫자가 기록된 컬럼) : 최소값
+
+-- 날짜 대소 비교 : 유니코드 순서(문자열 순서 A < Z)
+
+-- 모든 사원의 급여 합계 , 평균, 최대값, 최소값 조회
+SELECT SUM(SALARY) 합계, AVG(SALARY) 평균, MAX(SALARY) 최대값, MIN(SALARY) 최소값
+FROM EMPLOYEE;
+
+
+-- 모든 사원 중 
+-- 가장 빠른 입사일, 최근 입사일
+-- 이름 오름차순에서 제일 먼저 작성되는 이름, 마지막에 작성되는 이름
+SELECT MAX(HIRE_DATE), MIN(HIRE_DATE), MAX(EMP_NAME), MIN(EMP_NAME) 
+FROM EMPLOYEE;
+
+
+-- COUNT(* | [DISTINCT]컬럼명) : 조회된 행의 개수를 반환
+
+-- COUNT(*) : 조회된 모든 행의 개수를 반환
+
+-- COUNT(컬럼명) : 지정된 컬럼 값이 NULL이 아인 행의 개수를 반환
+-- 				(NULL인 행 미포함)
+
+-- COUNT(DISTINCT 컬럼명) :
+	-- 지정된 컬럼에서 중복 값을 지외한 행의 개수를 반환
+	-- EX) A A B C D D D E : 5개 (중복은 한번만 카운트)
+
+SELECT COUNT(*) FROM EMPLOYEE;
+SELECT COUNT(*) FROM EMPLOYEE 
+WHERE DEPT_CODE = 'D6';
+
+-- 전화번호가 있는 사원은 몇명인가
+SELECT COUNT(PHONE)
+FROM  EMPLOYEE e ;
+
+SELECT COUNT(*) FROM EMPLOYEE
+WHERE PHONE IS NOT NULL;
+
+-- EMPLOYEE 테이블에 존재하는 부서코드의 수르 조회
+SELECT COUNT(DISTINCT DEPT_CODE)
+FROM EMPLOYEE;
+
+
+-- EMPLOYEE 테이블에 존재하는 여자 사원의 수
+SELECT COUNT(*)
+FROM EMPLOYEE 
+WHERE SUBSTR(EMP_NO, 8, 1) = 2; 
+
+
+-- EMPLOYEE 테이블에 존재하는 남자 사원의 수
+SELECT COUNT(*)
+FROM EMPLOYEE 
+WHERE SUBSTR(EMP_NO, 8, 1) = 1;
+
+
+-- EMPLOYEE 테이블에 존재하는 남자, 여자 사원의 수
+SELECT COUNT(DECODE(SUBSTR(EMP_NO, 8, 1), 1, '남자', NULL)) ,
+COUNT(DECODE(SUBSTR(EMP_NO, 8, 1), 2, '여자', NULL)) 
+FROM EMPLOYEE;
+
+SELECT SUM(DECODE(SUBSTR(EMP_NO,8,1), 1, 1, 0)) 남자,
+SUM(DECODE(SUBSTR(EMP_NO,8,1), 2, 1, 0)) 여자
+FROM EMPLOYEE e ;
+
