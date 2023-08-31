@@ -26,12 +26,12 @@ public class JDBCExample3 {
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String type = "jdbc:oracle:thin:@";	// 드라이버 종류 
-			String host = "115.90.212.20";	// DB서버 컴퓨터 IP 주소
-			String port = ":10000";		// DB서버 컴퓨터 내에서 DB프로그램 번호
-			String dbName = ":ORCL";	// DB 이름
-			String userName = "a230724_kms_kang"; // 사용자 계정
-			String pw = "kkm990708";	// 비밀번호
+			String type = "jdbc:oracle:thin:@";	
+			String host = "115.90.212.20";
+			String port = ":10000";
+			String dbName = ":ORCL";
+			String userName = "a230724_kms_kang";
+			String pw = "kkm990708";
 			
 			conn = DriverManager.getConnection(type + host + port + dbName, userName , pw);
 			
@@ -45,7 +45,7 @@ public class JDBCExample3 {
 					+ "FROM EMPLOYEE\r\n"
 					+ "JOIN JOB USING(JOB_CODE)\r\n"
 					+ "WHERE SALARY BETWEEN "+min+" AND "+max+"\r\n"
-					+ " ORDER BY SALARY DESC";
+					+ "ORDER BY SALARY DESC";
 			
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
