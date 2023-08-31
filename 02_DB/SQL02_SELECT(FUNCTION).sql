@@ -92,15 +92,35 @@ SELECT DEPARTMENT_NO "학과코드명",
 	(SELECT COUNT(*) 
 	FROM TB_STUDENT TS2 
 	WHERE ABSENCE_YN = 'Y'
-	AND TS.DEPARTMENT_NO = TS2.DEPARTMENT_NO) "휴학생 수"
+	AND TS.DEPARTMENT_NO = TS2.DEPARTMENT_NO) "휴학생 수",
+COUNT( DECODE(ABSENCE_YN, 'Y', 'Y') ),
+SUM( DECODE(ABSENCE_YN, 'Y', 1, 'N', 0) )
 FROM TB_STUDENT TS 
 GROUP BY DEPARTMENT_NO
 ORDER BY "학과코드명"; 
 
+SELECT DEPARTMENT_NO "학과코드명", 
+DECODE(ABSENCE_YN, 'Y', 'Y') ,
+DECODE(ABSENCE_YN, 'Y', 1, 'N', 0) 
+FROM TB_STUDENT TS 
+ORDER BY "학과코드명"; 
 
 
 
+-- 12번
+-- 춘 대학교에 다니는 동명이인인 학생들의 이름, 동명인 수를 조회하시오.
+SELECT SUBSTR(TERM_NO,1,4) 년도, ROUND(AVG(POINT), 1 ) 평점
+FROM TB_GRADE 
+WHERE STUDENT_NO = 'A112113'
+GROUP BY SUBSTR(TERM_NO,1,4);
 
 
-
-
+-- 13번
+-- 학번이 A112113인 김고운 학생의 학점을 조회하려고 한다.
+-- 년도, 학기 별 평점과 년도 별 누적 평점, 총 평점을 구하는 SQL을 작성하시오.
+-- (단, 평점은 소수점 1자리까지만 반올림하여 표시한다.
+SELECT NVL(SUBSTR(TERM_NO,1,4), ' ') 년도, NVL(SUBSTR(TERM_NO,5,6),' ') 학기, ROUND(AVG(POINT)) 평점 
+FROM TB_GRADE TG  
+WHERE STUDENT_NO = 'A112113'
+GROUP BY ROLLUP ( SUBSTR(TERM_NO,1,4), SUBSTR(TERM_NO,5,6))
+;
