@@ -414,6 +414,158 @@ public class ProjectDAO {
 		return boardList;
 	}
 
+	public Board selectBoard(Connection conn, int boardNo) {
+		
+		Board board = null;
+		
+		String sql = "SELECT BOARD_TITLE, BOARD_CONTENT, \r\n"
+				+ "   TO_CHAR(B_CREATE_DATE, 'YYYY-MM-DD HH24:MI:SS') B_CREATE_DATE,\r\n"
+				+ "   READ_COUNT,\r\n"
+				+ "   MEMBER_NO, MEMBER_NICKNAME\r\n"
+				+ "FROM BOARD\r\n"
+				+ "JOIN MEMBER USING(MEMBER_NO)\r\n"
+				+ "WHERE BOARD_DEL_FL = 'N'\r\n"
+				+ "AND BOARD_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, boardNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				board = new Board();
+	            board.setBoardTitle(        rs.getString("BOARD_TITLE")  );
+	            board.setBoardContent(       rs.getString("BOARD_CONTENT") );
+	            board.setBoardCreateDate(    rs.getString("B_CREATE_DATE") );
+	            board.setReadCount(       rs.getInt("READ_COUNT") );
+	            board.setMemberNo(         rs.getInt("MEMBER_NO"));
+	            board.setMemberNickname(   rs.getString("MEMBER_NICKNAME"));
+	            board.setBoardNo(boardNo); 
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				close(rs);
+				close(pstmt);
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return board;
+	}
+
+	public int incrementReadCount(Connection conn, int boardNo) {
+		
+		int result = 0;
+		String sql = "UPDATE BOARD \r\n"
+				+ "SET READ_COUNT = READ_COUNT + 1\r\n"
+				+ "WHERE BOARD_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				close(pstmt);
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+	public int findBoard(Connection conn, int memberNo, int boardNo) {
+		int result = 0;
+		
+		String sql = "SELECT COUNT(*) CHK\r\n"
+				+ "FROM BOARD\r\n"
+				+ "WHERE BOARD_NO = ?\r\n"
+				+ "AND MEMBER_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			pstmt.setInt(2, memberNo);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("CHK");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				close(rs);
+				close(pstmt);
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+	public int deleteBoard(Connection conn, int boardNo) {
+		
+		int result = 0;
+		
+		String sql = "UPDATE BOARD \r\n"
+				+ "SET BOARD_DEL_FL = 'Y'\r\n"
+				+ "WHERE BOARD_NO = ?";
+		System.out.println("dao");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			System.out.println("dao2");
+			pstmt.setInt(1, boardNo);
+			System.out.println("dao3");
+			result = pstmt.executeUpdate();
+			System.out.println("dao4");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				close(pstmt);
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+	public int updateBoard(Connection conn, int boardNo, String title, String content) {
+		int result = 0;
+		
+		String sql = "UPDATE BOARD \r\n"
+				+ "SET BOARD_TITLE = ?,\r\n"
+				+ "BOARD_CONTENT = ?\r\n"
+				+ "WHERE BOARD_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setInt(3, boardNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				close(pstmt);
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+
 
 	
 }	// DAO 클래스 끝

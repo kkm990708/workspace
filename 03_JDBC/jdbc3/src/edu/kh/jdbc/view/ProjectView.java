@@ -34,10 +34,10 @@ public class ProjectView {
 		            System.out.println("4. 회원 탈퇴"); // MEMBER_DEL_FL = 'Y' UPDATE
 		            System.out.println("5. MEMBER 테이블 전체 조회"); 
 		            System.out.println("6. 게시글 작성");
-		         // 게시글 번호, 제목, 작성일, 조회수, 작성자번호, 작성자 닉네임
-		         // 게시글 번호 내림차순으로 조회
-		         // 단, 삭제되지 않은 글만 조회(BOARD_DEL_FL = 'N')
-		         System.out.println("7. 게시글 목록 조회"); // selectBoardList()
+		            System.out.println("7. 게시글 목록 조회"); // selectBoardList()
+		            System.out.println("8. 게시글 상세 조회");
+		            System.out.println("9. 게시글 삭제");
+		            System.out.println("10. 게시글 수정");
 		            System.out.println("0. 프로그램 종료");
 		            
 		            System.out.print("메뉴 선택 >> ");
@@ -52,6 +52,9 @@ public class ProjectView {
 		            case 5 : selectAllMember(); break;
 		            case 6 : insertBoard(); break;
 		            case 7 : selectBoardList(); break;
+		            case 8 : selectBoard(); break;
+		            case 9 : deleteBoard(); break;
+		            case 10 : updateBoard(); break;
 		            case 0 : System.out.println("\n--- 프로그램 종료 ---\n");break;
 		            default : System.out.println("\n*** 메뉴 번호만 입력해주세요 ***\n");
 		            }
@@ -224,7 +227,6 @@ public class ProjectView {
 			if(temp.equals("!wq")) { //입력 종료 커맨드인 경우
 				break;
 			}
-			
 			content += temp + "\n"; //입력 받은 한 줄을 content에 누적
 		}
   		
@@ -253,6 +255,100 @@ public class ProjectView {
 			}
 		}
   	}
+  	
+  	private void selectBoard() {
+  		System.out.println("\n***** 게시글 상세 조회 *****\n");
+  		System.out.print("게시글 번호 입력 : ");
+  		int boardNo = sc.nextInt();
+  		
+  		// 서비스 메서드 호출후 반환 받기
+  		Board board = service.selectBoard(boardNo);
+  		
+  		// 조회 결과 존재하지 않을 경우
+  		if (board == null) {
+			System.out.println("\n***** 게시글이 존재하지 않습니다 *****\n");
+			return;
+		}
+  		
+  		// 조회 결과가 있을경우
+  		System.out.printf("[%d] %s \n",
+  				board.getBoardNo(), board.getBoardTitle());
+  		
+  		System.out.println("작성일 : " + board.getBoardCreateDate());
+  		System.out.println("조회수 : " + board.getReadCount());
+  		System.out.printf("작성자 : %s (%d) \n",
+  				board.getMemberNickname(), board.getMemberNo() );
+  		
+  		System.out.println("---------------------------------------------------");
+  		System.out.println(board.getBoardContent());
+  		System.out.println("---------------------------------------------------");
+  		
+  	}
+  	
+  	private void deleteBoard() {
+  		System.out.println("\n***** 게시글 삭제 *****\n");
+
+  		if (loginMember == null) {
+			System.out.println("\n***** 로그인 후 이용해 주세요 *****\n");
+			return;
+		}
+  		
+  		System.out.print("게시글 번호 : ");
+  		int boardNo = sc.nextInt();
+  		
+  		int result = service.findBoard(loginMember.getMemberNo(), boardNo);
+  		
+  		if (result == 0) {
+  			System.out.println("해당 계정이 작성한 게시글이 없습니다");
+			return;
+		}
+  		
+  		System.out.print("정말 삭제하시겠습니까?(Y/N) : ");
+  		String YN = sc.next();
+  		if (YN.equals("Y")) {
+			result = service.deleteBoard(boardNo);
+			if(result > 0 ) System.out.println("삭제되었습니다");
+		}
+  		
+	}
+  	
+  	private void updateBoard() {
+  		System.out.println("\n***** 게시글 수정 *****\n");
+
+  		if (loginMember == null) {
+			System.out.println("\n***** 로그인 후 이용해 주세요 *****\n");
+			return;
+		}
+  		
+  		System.out.print("게시글 번호 : ");
+  		int boardNo = sc.nextInt();
+  		
+  		int result = service.findBoard(loginMember.getMemberNo(), boardNo);
+  		
+  		if (result == 0) {
+  			System.out.println("해당 계정이 작성한 게시글이 없습니다");
+			return;
+		}
+  		
+  		System.out.print("제목 입력 : ");
+  		String title = sc.next();
+  		sc.nextLine();
+  		
+  		System.out.println("내용 입력 (입력 종료 : !wq)");
+  		String content = ""; //빈 문자열
+  		while (true) {
+			String temp = sc.nextLine();
+			
+			if(temp.equals("!wq")) { //입력 종료 커맨드인 경우
+				break;
+			}
+			content += temp + "\n"; //입력 받은 한 줄을 content에 누적
+		}
+  		
+  		result = service.updateBoard(boardNo, title, content);
+  		if(result > 0) System.out.println("게시글 수정 성공!");
+  		else System.out.println("게시글 수정 실패!");
+	}
 }
 
 

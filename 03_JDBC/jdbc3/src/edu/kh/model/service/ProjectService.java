@@ -4,6 +4,7 @@ package edu.kh.model.service;
 import static edu.kh.jdbc.common.JDBCTemplate.*;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,6 +127,59 @@ public class ProjectService {
 		close(conn);
 		
 		return boardList;
+	}
+
+	public Board selectBoard(int boardNo) {
+		
+		Connection conn = getConnection();
+		
+		Board board = dao.selectBoard(conn, boardNo);
+		
+		if(board != null) {
+			int result = dao.incrementReadCount(conn, boardNo);
+			if(result > 0) 	{
+				commit(conn);
+				board.setReadCount(board.getReadCount() + 1);
+			}
+			else 			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return board;
+	}
+
+	public int findBoard(int memberNo, int boardNo) {
+		Connection conn = getConnection();
+		
+		int result = dao.findBoard(conn, memberNo, boardNo);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public int deleteBoard(int boardNo) {
+		Connection conn = getConnection();
+		
+		int result = dao.deleteBoard(conn, boardNo);
+		
+		if(result > 0) 	commit(conn);
+		else 			rollback(conn);
+		
+		close(conn);
+		return result;
+	}
+
+	public int updateBoard(int boardNo, String title, String content) {
+		Connection conn = getConnection();
+		
+		int result = dao.updateBoard(conn, boardNo, title, content);
+		
+		if(result > 0) 	commit(conn);
+		else 			rollback(conn);
+		
+		return result;
 	}
 
 }
