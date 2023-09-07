@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <title>HTML_실습문제</title>
+</head>
+<body>
+  <h1>HTML_실습문제_1</h1>
+
+  고객명 : <input type="text"><br><br>
+  전화번호 : <input type="text"><br><br>
+  E-mail : <input type="text"><br><br>
+  피자선택 : <select name="" id="">
+    <option value="">피자를 선택하세요</option>
+  </select><br>
+
+  <fieldset>
+    <legend>피자 사이즈</legend>
+    <input type="radio" name="pizaSize" id="SmallPiza"> <label for="SmallPiza">Small</label><br><br>
+    <input type="radio" name="pizaSize" id="MediumPiza"> <label for="MediumPiza">Medium</label><br><br>
+    <input type="radio" name="pizaSize" id="LargePiza"> <label for="LargePiza">Large</label><br><br>
+  </fieldset>
+
+  <fieldset>
+    <legend>토핑 선택</legend>
+    <input type="checkbox" name="topping" id=""> <label for="">베이컨</label><br><br>
+    <input type="checkbox" name="topping" id=""> <label for="">치즈</label><br><br>
+    <input type="checkbox" name="topping" id=""> <label for="">양파</label><br><br>
+    <input type="checkbox" name="topping" id=""> <label for="">버섯</label><br><br>
+  </fieldset>
+
+  희망배송시간 : <input type="time" name="" id=""><br><br>
+
+  배송시 요청사항 : <textarea name="" id="" cols="30" rows="5"></textarea> <br><br>
+  <button>주문하기</button>
+
+  <br><br>
+  <hr><hr><hr><hr>
+  <br><br>
+
+  <h1>HTML_실습문제_2</h1>
+  <fieldset>
+    <legend>납품자 정보</legend>
+    <ol type="1">
+      <li>납품자명 : <input type="text"></li><br>
+      <li>email : <input type="text" placeholder="answer@naver.com"></li><br>
+      <li>홈페이지 : <input type="text" value="http://"></li><br>
+      <li>지역 : 
+        <Select>
+          <option>부산</option>
+        </Select>
+      </li>
+    </ol>
+  </fieldset> 
+
+  <fieldset>
+    <legend>납품정보</legend>
+    <ul>
+      <li>상품명 : <input type="text"></li><br>
+      <li>납품수량 : <input type="text" placeholder="최소 100" min="100"></li><br>
+      <li>납품등급 : <input type="range" name="" id=""></li><br>
+      <li>기타사항 : <textarea name="" id="" cols="20" rows="5"></textarea></li><br>
+    </ul>
+  </fieldset><br>
+  <button>send message</button>
+  
+    <br><br>
+    <hr><hr><hr><hr>
+    <br><br>
+
+  <h1>HTML_실습문제_3</h1>
+  <fieldset>
+    <legend>필수 입력 사항</legend>
+    <table>
+
+      <tr>
+        <th>ID</th>
+        <td><input type="text" placeholder="아이디 10글자 이내" maxlength="10"></td>
+        <td><button>중복 확인</button></td>
+      </tr>
+      
+      <tr>
+        <th>비밀번호</th>
+        <td colspan="2"><input type="text" placeholder="영문,숫자,특수문자 포함 8자 이상" size="30"></td>
+      </tr>
+      
+      <tr>
+        <th>비밀번호 확인</th>
+        <td colspan="2"><input type="text" size="30"></td>
+      </tr>
+      
+      <tr>
+        <th>Email</th>
+        <td><input type="text"></td>
+        <td><select name="" id="">
+          <option>직접입력</option>
+        </select></td>
+      </tr>
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <legend>추가 정보</legend>
+    프로필 사진 <input type="file" name="" id=""><br><br>
+
+    성별 :
+    <input type="radio" name="gender" id=""> 남자 
+    <input type="radio" name="gender" id=""> 여자 <br><br>
+
+    생년월일 : <input type="date"> <br><br>
+
+    취미 <br>
+    <input type="checkbox" name="hobby" id=""> 야구 &nbsp;
+    <input type="checkbox" name="hobby" id=""> 농구 &nbsp;
+    <input type="checkbox" name="hobby" id=""> 축구 &nbsp; <br>
+    <input type="checkbox" name="hobby" id=""> 공부 &nbsp;
+    <input type="checkbox" name="hobby" id=""> 음악감상 &nbsp; <br>
+    <input type="checkbox" name="hobby" id=""> 기타 <input type="text"> <br><br>
+
+    자기소개 <br>
+    <textarea name="" id="" cols="100" rows="10"></textarea>
+
+  </fieldset><br> &nbsp;
+   <button>회원가입</button>
+  <button>다시입력</button>
+  <button>이전으로</button>
+</body>
+</html>
