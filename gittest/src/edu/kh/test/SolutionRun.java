@@ -4,6 +4,6 @@ import edu.kh.test.Solution;
 public class SolutionRun {
 	public static void main(String[] args) {
 		Solution solution = new Solution();
-		solution.solution(420);
+		System.out.println(solution.solution(252));
 	}
 }

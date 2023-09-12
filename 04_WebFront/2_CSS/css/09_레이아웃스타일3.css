@@ -1,0 +1,101 @@
+div{
+  border : 1px solid black;
+  box-sizing: border-box;;
+}
+
+.test{
+  width: 300px;
+  height: 200px;
+  background-color: #eee;
+}
+
+/* float-left */
+.float-left{
+  width: 50px;
+  height: 50px;
+  background-color: pink;
+  float :left;
+} 
+
+.clear-left{
+  clear: left;
+}
+
+/* float-right */
+.float-right{
+  width: 50px;
+  height: 40px;
+  background-color: brown;
+  float :right;
+} 
+
+.clear-right{
+  clear: right;
+}
+
+.clear-both{
+  clear : both;
+}
+
+/* -------------------------------------------------- */
+/* 영역 분할 */
+div{ /* 크기 지정, 영역분할을 편하게 하기 위한 설정 */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+
+.bg-1{background-color: red;}
+.bg-2{background-color: orange;}
+.bg-3{background-color: yellow;}
+.bg-4{background-color: green;}
+.bg-5{background-color: blue;}
+.bg-6{background-color: navy;}
+.bg-7{background-color: purple;}
+.bg-8{background-color: skyblue;}
+.bg-9{background-color: lightcoral;}
+.bg-10{background-color: lightgreen;}
+.bg-11{background-color: blueviolet;}
+.bg-12{background-color: lightyellow;}
+
+.col{
+  height: 100%;
+  float : left;
+}
+
+.col-1{
+  height: 100%; 
+  float: left;
+}
+
+.col-1{width: 10%;}
+.col-2{width: 20%;}
+.col-3{width: 30%;}
+.col-4{width: 40%;}
+.col-5{width: 50%;}
+.col-6{width: 60%;}
+
+.row{width: 100%;}
+.row-1{height: 10%;}
+.row-2{height: 20%;}
+.row-3{height: 30%;}
+.row-4{height: 40%;}
+.row-5{height: 50%;}
+
+.container-1{
+  width: 400px;
+  height: 200px;
+  border: 1px solid black;
+}
+
+.container-2{
+  width: 300px;
+  height: 200px;
+  border: 1px solid black;
+}
+
+.container-3{
+  width: 800px;
+  height: 600px;
+}

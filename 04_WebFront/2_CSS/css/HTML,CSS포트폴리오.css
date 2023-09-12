@@ -1,0 +1,92 @@
+*{
+  border: 1px solid black;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* navigator */
+
+.navigator{
+  
+  height: 40px;
+  display: flex;
+  position: sticky;
+  justify-content: center;
+}
+
+.line{
+  margin: 10px;
+}
+.navigator > li{
+  display: flex;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.navigator > li > a{
+  text-decoration: none;
+  font-size: 16px;
+  color: black;
+}
+/* navigator */
+
+/************ login ***********/
+
+/* my page */
+#my-page{
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
+
+.self-center{
+  text-align: center;
+}
+
+#login{
+  height: 600px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(199, 66, 66, 0.699);
+}
+
+#id-pw-login{
+  box-sizing: content-box;
+  padding: 40px 60px;
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  background-color: white;
+}
+
+/* 입력창 */
+#id-pw-login > input{
+  height: 50px;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+/* 버튼 */
+#login-button{
+  height: 51px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: rgb(36, 35, 35);
+  color: white;
+}
+
+input[type="checkbox"]{
+  width: 18px;
+  height: 18px;
+}
+
+label{font-size: 16px;}
+
+.custom-1{
+  font-size: 12px;
+}
