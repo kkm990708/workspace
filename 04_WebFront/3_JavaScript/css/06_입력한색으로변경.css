@@ -1,0 +1,55 @@
+*{
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.out-box{
+  box-sizing: content-box;
+  width: 1200px;
+  height: 260px;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 80px 10px 20px;
+  margin: auto;
+}
+
+.box{
+  border: 1px solid black;
+  width: 18%;
+  height: 100%;
+}
+
+.in-box{
+  width: 100%;
+  height: 88%;
+}
+
+.color-input{
+  width: 100%;
+  height: 12%;
+  display: flex;
+  bottom: 0px;
+  font-size: 18px;
+}
+
+#change-color{
+  justify-content: center;
+  text-align: center;
+}
+
+#change-color-button{
+  width: 1000px;
+  height: 30px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  font-weight: bold;
+  border: 3px solid dodgerblue;
+  background-color: white;
+  cursor: pointer;
+}
+
+#change-color-button:hover{
+  background-color: dodgerblue;
+  color: white;
+}
