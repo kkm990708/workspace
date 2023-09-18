@@ -1,0 +1,22 @@
+.warnning{
+  white-space: pre-wrap;
+  border: 2px solid red;
+  font-weight: bold;
+}
+
+#test3{
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  background-color: skyblue;
+  cursor: pointer;
+  user-select: none;
+  transition-duration: 0.3s;
+}
+
+#box4{
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+  transition-duration: 0.5s;
+}

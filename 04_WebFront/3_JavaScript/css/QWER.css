@@ -1,0 +1,27 @@
+*{
+  box-sizing: border-box;
+}
+
+.out-box{
+  border: 3px solid black;
+  box-sizing: content-box;
+  width: 720px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 100px;
+  padding: 20px;
+}
+
+.in-box{
+  border: 3px solid black;
+  border-radius: 5px;
+  width: 25%;
+  margin: 0 10px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+}

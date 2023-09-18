@@ -1,0 +1,14 @@
+*{
+  border: 1px solid black;
+}
+
+#input-box{
+  display: flex;
+  height: 200px;
+  justify-content: center;
+  margin: auto;
+}
+
+#input-button-box{
+  text-align: center;
+}

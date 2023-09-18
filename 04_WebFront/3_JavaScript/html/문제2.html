@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/문제2.css">
+</head>
+<body>
+  <div id="input-box">
+    <table>
+      <tr>
+        <td><b>너비 :</b> <input type="number" id="width"></td>
+        <td><b>높이 :</b> <input type="number" id="height"></td>
+      </tr>
+      <tr>
+        <td><b>글자크기 :</b> <input type="number" id="font-size"></td>
+        <td><b>굵기 :</b> 
+          보통 <input type="radio" name = "font-weight" id="font-weight-normal"> 
+          굵게 <input type="radio" name = "font-weight" id="font-weight-bold"></td>
+      </tr>
+      <tr>
+        <th>글자색 : <input type="text" id="color"></th>
+        <th>배경색 : <input type="text" id="back-color"></th>
+      </tr>
+  
+      <tr>
+        <td colspan="2"><b>가로 정렬 :</b> 
+          왼쪽 <input type="radio" name="horizontal" id="horizontal-left">
+          가운데 <input type="radio" name="horizontal" id="horizontal-center">
+          오른쪽 <input type="radio" name="horizontal" id="horizontal-right">
+        </td>
+      </tr>
+  
+      <tr>
+        <td colspan="2"><b>세로 정렬 :</b>
+          위쪽 <input type="radio" name="vertical" id="vertical-top">
+          가운데 <input type="radio" name="vertical" id="vertical-middle">
+          아래 <input type="radio" name="vertical" id="vertical-bottom">
+        </td>
+      </tr>
+  
+      <tr>
+        <td colspan="2"><b>출력 문자열 :</b> 
+        <input type="text" id="input-text"></td>
+      </tr>
+
+      <tr id="input-button-box">
+        <td colspan="2"><button id="input-button" onclick="apply()">적용하기</button></td>
+      </tr>
+  
+    </table>
+  </div>
+
+
+  <script src="../js/문제2.js"></script>
+</body>
+</html>
