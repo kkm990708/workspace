@@ -10,14 +10,14 @@
   <div id="input-box">
     <table>
       <tr>
-        <td><b>너비 :</b> <input type="number" id="width"></td>
-        <td><b>높이 :</b> <input type="number" id="height"></td>
+        <td><b>너비 :</b> <input type="number" id="width">px</td>
+        <td><b>높이 :</b> <input type="number" id="height">px</td>
       </tr>
       <tr>
-        <td><b>글자크기 :</b> <input type="number" id="font-size"></td>
+        <td><b>글자크기 :</b> <input type="number" id="font-size">px</td>
         <td><b>굵기 :</b> 
-          보통 <input type="radio" name = "font-weight" id="font-weight-normal"> 
-          굵게 <input type="radio" name = "font-weight" id="font-weight-bold"></td>
+          보통 <input type="radio" name = "font-weight" id="font-weight-normal" value="normal"> 
+          굵게 <input type="radio" name = "font-weight" id="font-weight-bold" value="bold"></td>
       </tr>
       <tr>
         <th>글자색 : <input type="text" id="color"></th>
@@ -26,17 +26,17 @@
   
       <tr>
         <td colspan="2"><b>가로 정렬 :</b> 
-          왼쪽 <input type="radio" name="horizontal" id="horizontal-left">
-          가운데 <input type="radio" name="horizontal" id="horizontal-center">
-          오른쪽 <input type="radio" name="horizontal" id="horizontal-right">
+          왼쪽 <input type="radio" name="horizontal" id="horizontal-left" value="start">
+          가운데 <input type="radio" name="horizontal" id="horizontal-center" value="center">
+          오른쪽 <input type="radio" name="horizontal" id="horizontal-right" value="end">
         </td>
       </tr>
   
       <tr>
         <td colspan="2"><b>세로 정렬 :</b>
-          위쪽 <input type="radio" name="vertical" id="vertical-top">
-          가운데 <input type="radio" name="vertical" id="vertical-middle">
-          아래 <input type="radio" name="vertical" id="vertical-bottom">
+          위쪽 <input type="radio" name="vertical" id="vertical-top" value="start">
+          가운데 <input type="radio" name="vertical" id="vertical-middle" value="center">
+          아래 <input type="radio" name="vertical" id="vertical-bottom" value="end">
         </td>
       </tr>
   
@@ -51,6 +51,7 @@
   
     </table>
   </div>
+  <div id="result-box">문제2</div>
 
 
   <script src="../js/문제2.js"></script>
