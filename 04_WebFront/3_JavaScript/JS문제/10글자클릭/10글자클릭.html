@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10글자 클릭</title>
+  <link rel="stylesheet" href="10글자클릭.css">
+</head>
+<body>
+  <h1>10자 까지 클릭한 숫자 기록하기</h1>
+  <div class="out-box">
+
+    <div class="in-box" onclick="init(this)">1</div>
+    <div class="in-box" onclick="init(this)">2</div>
+    <div class="in-box" onclick="init(this)">3</div>
+    <div class="in-box" onclick="init(this)">4</div>
+    <div class="in-box" onclick="init(this)">5</div>
+    <div class="in-box" onclick="init(this)">6</div>
+    <div class="in-box" onclick="init(this)">7</div>
+    <div class="in-box" onclick="init(this)">8</div>
+    <div class="in-box" onclick="init(this)">9</div>
+    <div class="in-box" onclick="init(this)">10</div>
+
+  </div>
+  <div>
+    클릭한 숫자 : <span id="result"></span><br>
+    <button id="retry">초기화</button>
+  </div>
+  <script src="10글자클릭.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로또번호생성기</title>
+  <link rel="stylesheet" href="로또번호생성기.css">
+</head>
+<body>
+  <div id="back">
+    <h1>로또번호생성기</h1>
+
+    <div id="create-box">
+        <h3>생성할 번호 조합 개수 선택</h3>
+        <div id="in-box">
+
+        <div id="select-box">
+          <input type="radio" name="create-number" class="input-number" value="1">1회 
+          <input type="radio" name="create-number" class="input-number" value="3">3회 
+          <input type="radio" name="create-number" class="input-number" value="5">5회 
+          <input type="radio" name="create-number" class="input-number" value="10">10회 
+        </div>
+
+        <div id="direct-input-box">
+          <input type="radio" name="create-number" class="input-number" id="direct-input-check" value="0" >       
+          <input type="number" class="direct-input" placeholder="직접입력"> 회
+        </div>
+
+        <button id="create-btn">생성</button>
+      </div>
+    </div>
+
+    <div id="out-number-box">
+    </div>
+
+  </div>
+
+
+
+
+  
+  <script src="로또번호생성기.js"></script>
+</body>
+</html>

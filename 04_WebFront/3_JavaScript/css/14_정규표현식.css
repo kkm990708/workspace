@@ -1,0 +1,17 @@
+*{
+  font-family: '고딕';
+}
+
+.normal-input{
+  color: black;
+}
+
+.check{
+  color : green;
+  font-weight: bold;
+}
+
+.error{
+  color : red;
+  font-weight: bold;
+}
