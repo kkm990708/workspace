@@ -1,0 +1,86 @@
+*{
+  font-family: '고딕';
+  user-select: none;
+}
+
+#back-ground{
+  background-color: rgb(203, 240, 255);
+  width: 1000px;
+  height: 800px;
+  margin: auto;
+  display: flex;
+}
+
+input{
+  width: 100%;
+  border: none;
+  border-bottom: 2px dashed black ;
+  height: 20px;
+  background-color: whitesmoke;
+}
+
+#out-box{
+  width: 450px;
+  margin: auto;
+  border: 2px solid gray;
+  padding: 20px;
+  padding-top: 60px;
+  background-color: whitesmoke;
+}
+
+#input-box{
+  width: 100%;
+}
+
+
+.input-area{
+  box-sizing: border-box;
+  width: 70%;
+  padding: 10px 7px;
+}
+
+.input-text{
+  padding: 10px 0;
+  display: flex;
+  align-content: baseline;
+}
+
+.js-area{
+  color: rgb(136, 136, 136);
+  font-size: 0.7em;
+  margin-top: 7px;
+}
+
+#input-button-area{
+  height: 70px;
+  padding: 20px 0 0;
+}
+
+#input-button{
+  width: 100%;
+  height: 100%;
+  font-size: 1.3em;
+  background-color: rgb(181, 238, 96);
+  border: none;
+  cursor: pointer;
+}
+
+#input-em{
+  width: 52%;
+}
+
+#input-em2{
+  width: 40%;
+}
+
+.em-area{
+  justify-content: space-between;
+}
+
+.error{
+  color: red;
+}
+
+.check{
+  color: green;
+}
