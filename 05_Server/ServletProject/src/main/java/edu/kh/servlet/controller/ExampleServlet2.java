@@ -3,6 +3,7 @@ package edu.kh.servlet.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,8 +27,11 @@ import jakarta.servlet.http.HttpServletResponse;
 // web.xml의 <servlet>. <
 @WebServlet("/example2")
 public class ExampleServlet2 extends HttpServlet {
+	
+	
 @Override
 protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
 	
 		//req.getParameter("속성") : 
 		// - 제출된 input 값 중 name이 일치하는 input의 value 얻어오기
