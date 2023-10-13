@@ -7,5 +7,7 @@ import edu.kh.project.member.model.dto.Member;
 public interface MemberDAO {
 
 	Member login(Member inputMember);
+
+	int signup(Member inputMember);
 	
 }

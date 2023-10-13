@@ -50,7 +50,7 @@ COMMENT ON COLUMN "MEMBER"."AUTHORITY" IS '권한(1 : 일반,  2 : 관리자)';
 CREATE SEQUENCE SEQ_MEMBER_NO NOCACHE;
 
 -- 샘플 계정 추가
-INSERT INTO MEMBER 
+INSERT INTO "MEMBER" 
 VALUES(SEQ_MEMBER_NO.NEXTVAL, 'member01@naver.com', 'pass01',
 	'회원1', '01012341234', '04540^^^서울시 중구 남대문로 120^^^2층',
  	NULL, DEFAULT, DEFAULT, DEFAULT);
@@ -69,3 +69,41 @@ FROM "MEMBER"
 WHERE MEMBER_DEL_FL = 'N'
 AND MEMBER_EMAIL = 'member01@naver.com'
 AND MEMBER_PW = 'pass01';
+
+-- 샘플 회원 비밀번호 변경
+UPDATE "MEMBER" SET 
+MEMBER_PW = '$2a$10$RnjUpZeXcmswC6CQcEREr.NN9vDyOjjGwta44/WX7ZP.kxX4Emeii'
+WHERE MEMBER_NO = 1;
+
+-- 회원 정보 수정
+-- "MEMBER" 테이블에서 
+-- MEMBER_NO가 일치하는 회원의
+-- MEMBER_NICKNAME, MEMBER_TEL, MEMBER_ADDRESS 수정
+
+UPDATE "MEMBER" SET
+MEMBER_NICKNAME = 'T',
+MEMBER_TEL = 01022223333,
+MEMBER_ADDRESS =12121
+WHERE MEMBER_NO = 1;
+
+-- BCrypt 암호화 시 비밀번호를 조회한 후
+-- matches() 메서드를 이용해서 비교
+-- 로그인한 회원의 암호화된 비밀번호를 조회
+SELECT MEMBER_PW 
+FROM "MEMBER"
+WHERE MEMBER_NO = '회원번호';
+
+-- 비밀번호 변경
+UPDATE "MEMBER" SET 
+MEMBER_PW = '비밀번호'
+WHERE MEMBER_NO = '회원번호';
+
+UPDATE "MEMBER" SET 
+MEMBER_DEL_FL = 'Y'
+WHERE MEMBER_NO = 2;
+
+SELECT * FROM "MEMBER" m ;
+
+UPDATE "MEMBER" SET 
+MEMBER_DEL_FL = 'N'
+WHERE MEMBER_NO = 1;

@@ -1,7 +1,9 @@
 package edu.kh.project.member.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.kh.project.member.model.dao.MemberDAO;
 import edu.kh.project.member.model.dto.Member;
@@ -15,18 +17,99 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired // 등록 bean 의존성 주입(DI)
 	private MemberDAO dao;
 	
+	@Autowired
+	private BCryptPasswordEncoder bcrypt;
+	//		bcrypt.encode(평문) -> 암호화
+	
 	@Override
 	public Member login(Member inputMember) {
 		
+//		String temp = bcrypt.encode(inputMember.getMemberPw());
+//		System.out.println("입력된 비밀번호 : " + inputMember.getMemberPw());
+//		System.out.println("암호화된 비밀번호 : " + temp);
+//		
+		
+		// DB - 암호화된 비밀번호
+		// 입력된 비밀번호 - 암호화 안된 비밀번호(평문)
+		
+		// becrypt 암호화 사용시 비밀번호 비교 방법
+		// 	1) DB에서 아이디가 일치하는 회원의 회원정보 + 비밀번호 조회
+		//	2) Service에서 bcrypt.maches(평문, 암호문) 메서드르 이용해서
+		// 입력된 비밀번호와 DB에서 조회된 비밀번호를 비교 일치하면 true 아니면 false
+		
+		
+		
+		//-------------------------------------[[[[[[[[[[[
+		
+		
 		// 현재 클래스가 Bean 으로 등록되어 의존성 주입 되었나 확인
-		System.out.println(inputMember);
 		
 		// 이제 Connection 따로 얻어올 필요 없음
 		// -> Connection 역할을 하는 SqlSessionTemplate이 Bean으로 등록됨
 		Member loginMember = dao.login(inputMember);
 		
-		System.out.println(loginMember);
+		//db조회 결과가 없을경우
+		if (loginMember == null) {return null;}
+		
+		// 입력된 비밀번호와 DB에 저장된 암호화된 비밀번호가 일치하지 않으면
+		if (!bcrypt.matches(inputMember.getMemberPw(), loginMember.getMemberPw())  ) {
+		}
+		
+		// 로그인된 회원 정보에서 비밀번호 제거 후 리턴
+		loginMember.setMemberPw(null);
 		
 		return loginMember;
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	
+	
+	
+	
+	// @Tranjectional
+	// - 트랜잭션 처리를 수행하라고 지시하는 어노테잇
+	//		(== 선언적 트랜잭션 처리)
+	
+	// 정상코드 수행 시 COMMIT
+	// Service 내부 코드 중 예외 발생 시 rollback	
+	
+	//[주의 사항]
+	// servlet-context.xml에 tx:annotation 태그가 존재해야한다
+	// ----------------------------------------------------------------------------------------------------------------
+	
+	
+	
+	@Transactional
+	@Override
+	public int signup(Member inputMember, String[] memberAddress) {
+
+		// memberaddress 가공
+		
+		// 주소를 입력하지 않은경우
+		if ( inputMember.getMemberAddress().equals(",,")) {
+			inputMember.setMemberAddress(null);
+		}else { // 입력한 경우
+			// memberAddress 배열 요소의 값은 하나의 문자열 변환
+			// 단, 요소 사이 구분자는 "^^^"
+			String addr = String.join("^^^", memberAddress);
+			
+			inputMember.setMemberAddress(addr);
+		}
+		
+		// -> 주소 미입력 == null
+		// -> 주소 입력 = "A^^^B^^^C"
+		
+		//------------------------------------------------------------------------------
+		// 비밀번호 암호화 진행
+		String encPw = bcrypt.encode(inputMember.getMemberPw());
+		inputMember.setMemberPw(encPw);
+		
+		
+		//------------------------------------------------------------------------------
+		
+		// DAO 호출
+		return dao.signup(inputMember);
+		
+		
 	}
 }
