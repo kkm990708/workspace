@@ -30,9 +30,6 @@ public class MainController {
 		// text, utext 비교
 		model.addAttribute("address","<h1>서울시 강남구<h1>");
 		
-		log.debug("로그 찍기");
-		log.debug("메인페이지 요청");
-		
 		/* Thymeleaf 템플릿 엔진 사용시 접두사 접미사 */
 		// 접두사 : classpath:/templates
 		// 접미사 : .html
