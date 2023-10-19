@@ -10,5 +10,48 @@
 		FROM "MEMBER"
 		WHERE MEMBER_EMAIL = #{memberEmail}
 	</select>
+	
+	<!-- 전체 회원 조회 -->
+	<!-- resultType 은 1행 결과를 저장할 타입 지정 -->
+	<select id="selectAll" resultType="Member">
+		SELECT MEMBER_NO ,MEMBER_EMAIL ,MEMBER_DEL_FL 
+		FROM "MEMBER"
+		ORDER BY MEMBER_NO DESC 	
+	</select>
+	
+	<!--
+		#{} : 출력 값 양쪽에 '' (홑따옴표) 추가
+		${} : 출력 값 그대로 출력 (홑따옴포 X)
+	-->
+	
+	<!-- 전체 회원 조회 (정렬)-->
+	<select id="selectSort" resultType="Member">
+		SELECT MEMBER_NO ,MEMBER_EMAIL ,MEMBER_DEL_FL 
+		FROM "MEMBER"
+		ORDER BY ${query}
+	</select>
 
+
+	<update id="restoration">
+		UPDATE "MEMBER" SET
+		MEMBER_DEL_FL = 'N'
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<update id="changeAuthority">
+		
+		UPDATE "MEMBER" SET 
+		AUTHORITY = DECODE(AUTHORITY, 1, 2, 2, 1)
+		WHERE MEMBER_NO = #{memberNo}
+		
+	</update>
+	
+	<update id="initPw">
+		UPDATE "MEMBER" SET 
+		MEMBER_PW = #{memberPw}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	
+	
 </mapper>
