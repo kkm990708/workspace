@@ -48,6 +48,6 @@ public interface AdminMapper {
 	 * @param map
 	 * @return
 	 */
-	int   (Map<String, Object> map);
+	int initPw (Map<String, Object> map);
  
 }
