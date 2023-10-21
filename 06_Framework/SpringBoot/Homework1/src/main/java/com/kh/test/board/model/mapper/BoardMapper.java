@@ -26,6 +26,22 @@ public interface BoardMapper {
 	 */
 	Board selectBoard(int no);
 
-	
+	/** 게시글 비밀번호 조회
+	 * @param boardNo
+	 * @return
+	 */
+	String selectBoardPw(int boardNo);
+
+	/** 게시글 삭제
+	 * @param boardNo
+	 * @return
+	 */
+	int deleteBoard(int boardNo);
+ 
+	/** 게시판 업데이트
+	 * @param updateBoard
+	 * @return
+	 */
+	int updateBoard(Board updateBoard);
 	
 }

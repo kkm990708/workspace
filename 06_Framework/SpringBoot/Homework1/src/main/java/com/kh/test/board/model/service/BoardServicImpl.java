@@ -42,4 +42,40 @@ public class BoardServicImpl implements BoardService {
 		
 		return mapper.selectBoard(no);
 	}
+	
+	
+	@Override
+	public int deleteBoard(int boardNo, String boardPw) {
+		
+		String encPw = mapper.selectBoardPw(boardNo);
+		
+		if (!bcrypt.matches(boardPw, encPw)) {
+			return 0;
+		}
+		
+		return mapper.deleteBoard(boardNo);
+	}
+	
+	
+	
+	@Override
+	public Board moveBoard(int boardNo, String boardPw) {
+		String encPw = mapper.selectBoardPw(boardNo);
+		
+		if (!bcrypt.matches(boardPw, encPw)) {
+			return null;
+		}
+		
+		return mapper.selectBoard(boardNo);
+	}
+	
+	@Override
+	public int updateBoard(Board updateBoard) {
+		
+		updateBoard.setBoardPw(bcrypt.encode(updateBoard.getBoardPw() ) );
+		
+		return mapper.updateBoard(updateBoard);
+	}
+	
+	
 }

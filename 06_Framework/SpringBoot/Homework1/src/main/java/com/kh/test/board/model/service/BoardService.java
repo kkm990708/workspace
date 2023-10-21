@@ -24,4 +24,24 @@ public interface BoardService {
 	 */
 	Board selectBoard(int no);
 
+	/** 게시글 삭제
+	 * @param boardNo
+	 * @param boardPw 
+	 * @return
+	 */
+	int deleteBoard(int boardNo, String boardPw);
+
+	/** 업데이트 이동
+	 * @param boardNo
+	 * @param boardPw
+	 * @return
+	 */
+	Board moveBoard(int boardNo, String boardPw);
+
+	/** 게시판 업데이트
+	 * @param updateBoard
+	 * @return
+	 */
+	int updateBoard(Board updateBoard);
+
 }
