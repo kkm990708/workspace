@@ -28,4 +28,21 @@
       )
    </insert>
 
+	<select id="checkEmail" resultType="_int">
+		SELECT count(*) FROM "MEMBER" 
+		WHERE MEMBER_DEL_FL = 'N'
+		AND MEMBER_EMAIL = #{email}
+	</select>
+	
+	
+	<select id="checkNickname">
+		SELECT count(*) FROM "MEMBER" 
+		WHERE MEMBER_DEL_FL = 'N'
+		AND MEMBER_NICKNAME = #{nickname}
+	</select>
+	
+	
+	
+	
+
 </mapper>

@@ -51,7 +51,7 @@
 		MEMBER_PW = #{memberPw}
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
-	
+
 	
 	
 </mapper>
