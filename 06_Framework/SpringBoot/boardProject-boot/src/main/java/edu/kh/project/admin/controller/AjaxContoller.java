@@ -1,17 +1,25 @@
 package edu.kh.project.admin.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.kh.project.admin.service.AjaxSerivce;
 import edu.kh.project.member.model.dto.Member;
+import edu.kh.project.member.service.MemberServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("ajax") // 상위 공통 주소
 public class AjaxContoller {
@@ -101,14 +109,49 @@ public class AjaxContoller {
 	}
 	
 	
+	@GetMapping(value="selectAll" , produces = "application/json; charset=UTF-8")
+	@ResponseBody // 비동기 통신 응답(forward/redirect X, 데이터 자제)
+	public List<Member> selectAll(){
+		
+		// List (Java 객체)
+		// -> HttpMessageConverter 가 JSON(문자열)으로 변환
+		//	  (+ produces 속성을 이용해 응답 받는 JS에서 자동으로 JS객체로 변환하도록함
+		// -> 객체
+		
+		return serivce.selectAll();
+	}
 	
 	
 	
+	// @RequestBody{ 요정 body }
+	// - 요청 body에 담긴 내용을 얻어와 매개변수에 대입
+	// - HttpMessageConber가
+	//   이 과정에서 데이터 타입을 Java에 알맞게 변환
+	// number -> int/double
+	// string -> String
+	// JSON -> DTO, List, Map
+	/**
+	 * @return
+	 */
+	@PostMapping("insertMember")
+	@ResponseBody // 반환값이 그대로 들어감
+	public int insertMember(@RequestBody Member member) {
+		
+		log.debug(member.toString());
+		
+		return serivce.insertMember(member);
+	}
 	
-	
-	
-	
-	
+	/** 회원 탈퇴여부 변경
+	 * @param paramMap : flag, targetNo가 담겨있는 map
+	 * @return
+	 */
+	@PutMapping("updateFlag")
+	@ResponseBody
+	public int updateFlag(@RequestBody Map<String, Object> paramMap) {
+		
+		return serivce.updateFlag(paramMap);
+	}
 	
 	
 }
