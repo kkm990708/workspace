@@ -44,18 +44,18 @@
 
                         <!-- 프로필 이미지가 없을 경우 -->
                         <img th:if="${session.loginMember.profileImg == null}" 
-                        th:src="#{user.default.image}" id="profileImage">
+                        th:src="#{user.default.image}" id="profileImg">
 
                         <!-- 프로필 이미지가 있을 경우 -->
                         <img th:unless="${session.loginMember.profileImg == null}" 
-                        th:src="${session.loginMember.profileImg}" id="profileImage">
+                        th:src="${session.loginMember.profileImg}" id="profileImg">
 
                     </div>
                     <span id="deleteImage">x</span>
 
                     <div class="profile-btn-area">
                         <label for="imageInput">이미지 선택</label>
-                        <input type="file" name="profileImage" id="imageInput" accept="image/*">
+                        <input type="file" name="profileImg" id="imageInput" accept="image/*">
                         <button>변경하기</button>
                     </div>
                     

@@ -21,4 +21,10 @@ public interface MyPageMapper {
 	 */
 	int secession(Member loginMember);
 
+	/** 프로필 이미지 수정
+	 * @param loginMember
+	 * @return result
+	 */
+	int profile(Member loginMember);
+
 }
