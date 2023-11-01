@@ -4,7 +4,11 @@
 <mapper namespace="edu.kh.project.board.model.mapper.EditBoardMapper">
 	
 	<update id="deleteBoard">
-	
+	UPDATE "BOARD" SET 
+	BOARD_DEL_FL = 'Y'
+	WHERE BOARD_CODE = #{boardCode}
+	AND BOARD_NO = #{boardNo}
+	AND MEMBER_NO = #{memberNo}
 	</update>
 	
 </mapper>

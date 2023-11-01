@@ -123,7 +123,7 @@ const deleteBtn = document.getElementById("deleteBtn");
 // 만약 화면에 버튼이 없으면 null 반환
 if(deleteBtn != null){ // 삭제 버튼이 존재하는 경우
 
-  deleteBtn.addEventListener("click", (e) => {
+  deleteBtn.addEventListener("click", () => {
     
     //confirm : 확인 클릭 -> true / 취소 클릭 -> false 반환
     if( confirm("삭제 하시겠습니까?") ){
