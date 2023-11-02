@@ -22,3 +22,167 @@ function sample6_execDaumPostcode() {
         }
     }).open();
 }
+
+
+// ----------------------------------------------------------------
+
+// input type="file" 태그의 특징
+// - 파일이 선택되면 change 이벤트 발생
+// - 파일이 선택 화면에서 취소를 누르면
+//   기존에 세팅된 values/files 가 없어지게 된다
+// --> 1차 이미지 변경후  2차 변형 과정에서 취소를 누르면
+ //    1차 이미지 value/files가 없어지게 되어 
+//     제출 시 파일이 서버로 전달되지 않는다
+
+// value에 대입 가능한 갑은 빈칸("")뿐이다
+// -files는 동일한 자료형(FileList)E 또는 undefined 대입 가능
+
+
+/* 프로필 이미지 미리보기, 제거 */
+const profileImg = document.querySelector("#profileImg");
+let imageInput = document.querySelector("#imageInput");
+const deleteImage = document.querySelector("#deleteImage");
+
+// 프로필 이미지가
+// -1 : 변경되지 않았을 때
+//  0 : 있었는데 없어짐 == X 버튼 클릭
+//  1 : 새 이미지 선택 (없다 -> 있다, 있다 -> 다른 이미지)
+let statusCheck = -1;
+
+// input type="file" 태그의 값이 변경 되었을 때 변경된 상태를 백업해둘 변수
+
+// 요소.cloneNode(true, false)
+let backupInput;
+
+
+if(imageInput != null) { // #imageInput 존재할때
+    /* 프로필 이미지 변경(선택) 시 수행할 함수 */
+    const changeImageFn = e => {
+        // console.log(e.target);
+        // console.log(e.target.value); // 업로드 파일 경로 (fakepath 형태로 출력)
+        // console.log(e.target.files); // 업로드된 파일의 정보가 담긴 배열 반환
+        //                              // /* 실제 파일 */
+
+        // console.log(e.target.files[0]); // 업로드된 파일 중 첫 번째 파일
+        const uploadFile = e.target.files[0];
+
+        // 파일을 한번 선택한 후 취소했을 때
+        if(uploadFile == undefined){ // 취소를 눌러서 files[0]에 파일이 없을 때
+            console.log("파일 선택이 취소됨");
+
+            // 1) backup한 요소를 복제
+            const temp = backupInput.cloneNode(true);
+
+            // 2) 화면에 원본 input을 temp로 바꾸기
+            imageInput.after(temp); // 원본 다음에 temp 추가
+            imageInput.remove(); // 원본을 화면에서 제거
+            imageInput = temp; // temp를 imageInput 변수에 대입
+
+            // 복제본은 이벤트가 복제 안되니까 다시 이벤트를추가
+            imageInput.addEventListener("change", changeImageFn);
+            return;
+        }   
+
+        // ---------- 선택된 파일의 크기가 지정된 크기를 초과하는 경우 ----------
+        const maxSize = 1024 * 1024; // 1MB (byte 단위)
+
+        if(uploadFile.size > maxSize){
+            alert("1MB 이하의 이미지만 업로드 가능합니다");
+
+            if(statusCheck == -1){ // 이미지 변경이 없었을 때
+
+            
+            // 최대 크기를 초과해도 input에 value가 남기 떄문에
+            // 이를 제거하는 코드가 필요하다
+
+            imageInput.value = ''; // value 삭제
+                                   // 동시에 files도 삭제됨
+
+            statusCheck = -1  // 선택 없음 상태
+            return;
+
+            } else {
+            // 1) backup한 요소를 복제
+            const temp = backupInput.cloneNode(true);
+
+            // 2) 화면에 원본 input을 temp로 바꾸기
+            imageInput.after(temp); // 원본 다음에 temp 추가
+            imageInput.remove(); // 원본을 화면에서 제거
+            imageInput = temp; // temp를 imageInput 변수에 대입
+
+            // 복제본은 이벤트가 복제 안되니까 다시 이벤트를추가
+            imageInput.addEventListener("change", changeImageFn);
+            statusCheck = 1;
+
+            }
+        }
+
+        // 선택된 이미지 파일을 읽어와 미리보기 만들기
+
+        // JS에서 파일을 읽는 객체
+        // -> 파일을 읽고 클라이언트 컴퓨터에 파일을 저장할 수 있음
+        const reader = new FileReader();
+
+        // 매개변수에 작성된 파일을 읽어서
+        // 파일을 나타내는 URL 형태로 변경
+        // -> FileReader.result 필드에 저장되어 있음
+
+        reader.readAsDataURL(uploadFile);
+
+        reader.onload = () => {
+
+            // img 태그의 src 속성의 속성 값으로
+            // 읽은 파일의 URL을 대입
+
+            profileImg.setAttribute("src", reader.result);
+
+            statusCheck = 1; // 새 이미지 선택한 경우
+
+            // 파일이 추가된 input을 bakcup 해두기
+            backupInput = imageInput.cloneNode(true);
+            
+            
+        };
+
+    }
+
+    /* 이미지 선택 버튼 */
+    // change 이벤트 : input의 이전 값과 현재 값이 다를 때 발생
+    imageInput.addEventListener("change", changeImageFn);
+
+    // ------- x 버튼 클릭 시 기본 이미지로 변경 -------
+    // 1) 미리보기 -> 기본 이미지 변경
+    // 2) input 태그에 value 값을 빈칸으로 변경 ( 파일 없음 )
+
+    deleteImage.addEventListener("click", () => {
+        profileImg.setAttribute("src", defaultImage);
+
+        imageInput.value = "";
+        backupInput.value = "";
+        statusCheck = 0 ; // 있엇는데 없어짐
+    }); 
+
+    // -------------- 프로필 이미지 변경 form 태그시 종작
+
+
+    const profileFrm = document.getElementById("profileFrm");
+    profileFrm.addEventListener("submit", e=>{
+        let flag = true;
+        
+        //로그인한 회원의 프로필이 있음 -> 없음
+        if(loginMemberProfileImg != null && statusCheck == 0) flag = false;
+
+        // 로그인한 회원의 프로필이 없음
+        if(loginMemberProfileImg == null && statusCheck == 1) flag = false;
+
+        // 로그인한 회원의 프로필이 없음
+        if(loginMemberProfileImg != null && statusCheck == 1) flag = false;
+
+        if(flag){ // flag가 true인 경우
+            e.preventDefault();
+            alert("이미지 변경 후 클릭 해주세요");
+        }
+    });
+
+
+}
