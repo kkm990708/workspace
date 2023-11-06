@@ -133,8 +133,24 @@ if(deleteBtn != null){ // 삭제 버튼이 존재하는 경우
       location.href = location.pathname.replace("board","editBoard") + "/delete";
 
     }
-
   })
-
 }
 
+
+// ----------------------------------------------------------
+
+/* 수정 버튼 클릭 시 수정 화면 요청 */
+const updateBtn = document.getElementById("updateBtn");
+
+if(updateBtn != null){
+  updateBtn.addEventListener('click', ()=>{
+
+    //board/{boardCode}/{boardNo}?cp1
+    //editboard/{boardCode}/{boardNo}/update?cp1
+
+    let url = `/editBoard/${boardCode}/${boardNo}/update${location.search}`
+
+    location.href = url;
+
+  });
+}

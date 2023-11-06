@@ -241,8 +241,6 @@ public class BoardController {
              model.addAttribute("start", thumbnail != null ? 1 : 0);
           }
           
-          // 썸네일이 있을 경우 1, 없으면 0을 start로 세팅
-          model.addAttribute("start", board.getThumbnail() != null ? 1 : 0);	
 			
 		}
 		
