@@ -31,6 +31,12 @@
 					javaType="java.util.ArrayList"
 					ofType="Comment"
 					/>
+					
+      <collection property="imageList" 
+               select="selectImageList" 
+               column="BOARD_NO"
+               javaType="java.util.ArrayList"
+               ofType="BoardImg" />
 	</resultMap>
 	
 	
@@ -141,6 +147,15 @@
 		READ_COUNT = READ_COUNT + 1
 		WHERE BOARD_NO = #{boardNo}	
 	</update>
+	
+	
+	
+	   <!-- 특정 게시글 이미지 조회 -->
+   <select id="selectImageList" resultType="BoardImg">
+      SELECT * FROM BOARD_IMG
+      WHERE BOARD_NO = #{boardNo}
+      ORDER BY IMG_ORDER
+   </select>
 	
 	
 </mapper>

@@ -57,7 +57,7 @@
       close : 반복 종료 후에 출력한 sql
       
       separator : 반복 사이사이 구분자
-    -->
+    --> 
     
 	<!-- 업로드된 게시글 이미지 일괄 삽입 -->
 	<insert id="insertUploadList" parameterType="list">
