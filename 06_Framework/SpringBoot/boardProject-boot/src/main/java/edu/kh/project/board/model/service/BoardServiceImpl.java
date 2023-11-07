@@ -68,8 +68,52 @@ public class BoardServiceImpl implements BoardService{
 		map.put("boardList", boardList);
 		map.put("pagination", pagination);
 		
+		
+
 		return map;
 	}
+	
+	
+	
+
+	// 검색 목록 조회
+	@Override
+	public Map<String, Object> searchBoardList(Map<String, Object> paramMap, int cp) {
+		
+		/* 검색 조건 일치 게시글 수 조회 */
+		int listCount = mapper.searchListCount(paramMap);
+		
+		/* cp, listCount를 이용해서 Pagination 객체 생성*/
+		Pagination pagination = new Pagination(cp, listCount);
+		
+		/* RowBound 객체 생성
+		 * 
+		 * - RowBound?란
+		 * - Row(행), bound(도약, 건너 뛰기)
+		 * -- 전체 조회 결과 중 지정된 행(offset) 만큼 건너뛴 다음
+		 * 	  읽어올 만큼
+		 * 		 
+		 *
+		 */
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		
+		int limit = pagination.getLimit();
+		
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		
+		List<Board> boardList = mapper.searchBoardList(paramMap, rowBounds);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("boardList", boardList);
+		map.put("pagination", pagination);
+		
+		
+		return map;
+	}
+	
+	
 	
 	
 	// 게시글 상세 조회 + 게시글의 댓글 모두 조회

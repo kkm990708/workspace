@@ -13,12 +13,20 @@ public interface BoardService {
 	 */
 	Map<String, Object> selectBoardList(int boardCode, int cp);
 
+	/** 게시글 검색 목록 조회 
+	 * @param paramMap
+	 * @param cp
+	 * @return
+	 */
+	Map<String, Object> searchBoardList(Map<String, Object> paramMap, int cp);
+
 	/** 게시글 상세 조회
 	 * @param map
 	 * @return
 	 */
 	Board boardDetail(Map<String, Object> map);
  
+
 	/** 게시글 좋아요 여부 확인
 	 * @param map
 	 * @return
@@ -36,5 +44,6 @@ public interface BoardService {
 	 * @return result
 	 */
 	int updateReadCount(int boardNo);
+
 
 }
