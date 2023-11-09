@@ -39,15 +39,14 @@ public class BoardServiceImpl implements BoardService{
 		
 		Pagination pagination = new Pagination(cp, listCount);
 		
-		/* RowBound 객체 생성
+		/* RowBounds 객체 생성 (마이바티스)
 		 * 
-		 * - RowBound?란
-		 * - Row(행), bound(도약, 건너 뛰기)
-		 * -- 전체 조회 결과 중 지정된 행(offset) 만큼 건너뛴 다음
-		 * 	  읽어올 만큼
-		 * 		 
-		 *
-		 */
+		 * - RowBounds란? 
+		 *  -- Row(행) , Bound(도약, 건너뛰기)
+		 *  -- 전체 조회 결과 중 지정된 행(offset) 만큼 건너뛴 다음
+		 *     읽어올 행의 개수(limit) 만큼만 조회
+		 * */
+		
 		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
 		
 		int limit = pagination.getLimit();

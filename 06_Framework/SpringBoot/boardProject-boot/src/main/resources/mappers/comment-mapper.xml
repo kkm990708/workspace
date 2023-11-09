@@ -42,7 +42,7 @@
 		UPDATE "COMMENT" SET
 		COMMENT_CONTENT = #{commentContent}
 		WHERE COMMENT_NO = #{commentNo}
-		
+		 
 	</update>
 	<!-- 댓글 삭제 -->
 	<update id="delete">

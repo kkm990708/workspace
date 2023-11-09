@@ -12,6 +12,7 @@ import org.apache.ibatis.session.RowBounds;
  * 다음 페이지의 시작 페이지 번호,
  * 마지막 페이지 번호
  */
+
 public class Pagination {
    private int currentPage;      // 현재 페이지 번호
    private int listCount;         // 전체 게시글 수
