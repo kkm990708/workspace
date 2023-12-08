@@ -160,4 +160,15 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	
+	@Override
+	public List<String> selectDbImageList() {
+		return mapper.selectDbImageList();
+	}
+	
+	// 게시판 종류 조회
+	@Override
+	public List<Map<String, Object>> searchBoardTypeList() {
+		
+		return mapper.searchBoardTypeList();
+	}
 }

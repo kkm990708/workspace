@@ -51,6 +51,8 @@ public class MemberController {
 		// 로그인 서비스 호출 
 		Member loginMember = service.login(inputMember);
 		
+		
+		
 		// 로그인 성공
 		if(loginMember != null) { 
 			

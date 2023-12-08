@@ -275,4 +275,23 @@
    </select>
 	
 	
+	<select id="selectDbImageList" resultType="string">
+		SELECT SUBSTR( PROFILE_IMG, INSTR(PROFILE_IMG, '/', -1) + 1 ) "rename"
+		FROM "MEMBER" m 
+		WHERE MEMBER_NO != 0
+		AND PROFILE_IMG IS NOT NULL
+		
+		UNION 
+		
+		SELECT IMG_RENAME "raname"
+		FROM BOARD_IMG BI 
+	</select>
+	
+	<!-- 게시판 종류 조회 -->
+	<select id="searchBoardTypeList" resultType="map">
+		SELECT BOARD_CODE "boardCode", BOARD_NAME "boardName"
+		FROM "BOARD_TYPE"
+		WHERE BOARD_CODE != 0
+		ORDER BY 1
+	</select>
 </mapper>

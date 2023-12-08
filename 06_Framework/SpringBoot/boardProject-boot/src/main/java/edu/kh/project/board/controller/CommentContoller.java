@@ -2,9 +2,6 @@ package edu.kh.project.board.controller;
 
 import java.util.List;
 
-import org.springframework.boot.devtools.restart.RestartScope;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,9 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.kh.project.board.model.dto.Comment;
 import edu.kh.project.board.model.service.CommentService;
-import edu.kh.project.board.model.service.CommentServiceImpl;
 import lombok.RequiredArgsConstructor;
-import oracle.jdbc.proxy.annotation.Post;
 
 @RestController
 @RequiredArgsConstructor
