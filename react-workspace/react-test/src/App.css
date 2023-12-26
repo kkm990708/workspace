@@ -1,0 +1,11 @@
+button{
+  border-radius: 5px;
+  
+}
+.plus-btn{
+  background-color: magenta;
+}
+
+.minus-btn{
+  background-color: cyan;
+}

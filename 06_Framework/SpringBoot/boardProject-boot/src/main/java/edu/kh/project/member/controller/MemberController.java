@@ -126,6 +126,8 @@ public class MemberController {
 	@PostMapping("signup")
 	public String signup(@ModelAttribute Member inputMember,
 			String[] memberAddress, RedirectAttributes ra) {
+		String inputAddress = inputMember.getMemberAddress() + " " + inputMember.getMemberAddressDetail();
+		inputMember.setMemberAddress(inputAddress);
 		
 		
 		// 회원 가입 서비스 호출

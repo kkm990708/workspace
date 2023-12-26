@@ -1,9 +1,16 @@
 import './App.css';
-import ClassComponent from './components/R01_ClassComponent';
-import FunctionComponent from './components/R02_FuntionComponent';
-import Props1 from './components/R03_Props01';
-import Props2 from './components/R04_Props02';
-import Props3 from './components/R05_Props03';
+// import ClassComponent from './components/R01_ClassComponent';
+// import FunctionComponent from './components/R02_FuntionComponent';
+// import Props1 from './components/R03_Props01';
+// import Props2 from './components/R04_Props02';
+// import Props3 from './components/R05_Props03';
+// import State1 from './components/R06_State1';
+// import State2 from './components/R07_State2';
+// import State3 from './components/R08_State3';
+// import TodoList from './components/R09_TodoList';
+import Context1 from './components/R10_Context1';
+import Context2 from './components/R11_Context2';
+import Context3 from './components/R13_Context/Parent';
 
 /* ============================================================== */
 /* 
@@ -16,16 +23,13 @@ function App() {
 
     /* <></> (fragment, 조각) : 반환되는 요소를 감싸는 태그, 해석X */
 
-      <>
-
+    <>
       <h1>테스트</h1>
 
-      {/* jsx 주석 */}
-        {/* <ClassComponent/> */}
         <hr/>
         {/* <FunctionComponent/> */}
 
-        <hr/>
+        {/* <hr/>
 
         <Props1/>
         <Props1 name='홍길동' num='1'/>
@@ -41,8 +45,29 @@ function App() {
         <Props3 name='김민규'/>
         <Props3 name='윤성국'/>
 
-      </>
+        <hr/>
 
+        <State1/>
+
+        <hr/>
+
+
+        <State2 init={100}/>
+
+        <hr/>
+
+        <State3/> */}
+
+        {/* <TodoList/> */}
+
+        <Context1/>
+        <hr/>
+        <Context2/>
+
+        <hr/>
+
+        <Context3/>
+    </>
     );
 }
 

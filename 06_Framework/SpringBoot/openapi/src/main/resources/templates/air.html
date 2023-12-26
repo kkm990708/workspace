@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div th:text="${air}"></div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div th:text="${urlBuilder}"></div>
+
+
+  <script>
+
+
+    /* 개인 API 인증키 */
+
+    const serviceKey = "gHsraoiBgDTxmQOSmNCfNQw5eUiQMzHanPOgCzd49zTiNkF2exiMsphSXHTgMJhkvndJEh9OCrTOdzwYXEGKJQ%3D%3D";
+
+    const getAirPollution = (sidoName) => {
+
+    const requestUrl = 'http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty';
+
+    // 쿼리 스트링 생성 (URLSearchParams.toString())
+
+    const searchParams = new URLSearchParams();
+
+    /* 서비스 키 추가 */
+    searchParams.append('serviceKey', serviceKey)
+
+    searchParams.append('returnType', 'JSON');
+
+    searchParams.append('sidoName', sidoName);
+
+    console.log(searchParams);
+    console.log(requestUrl);
+
+    /* 요청에  */
+    fetch(requestUrl + '?' + searchParams)
+
+    .then(resp => resp.json())
+
+    .then(result => {
+
+    console.log(result);
+
+    })
+
+    .catch(e => console.log(e));
+
+    }
+
+  </script>
+</body>
+</html>
